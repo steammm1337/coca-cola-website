@@ -256,16 +256,21 @@
                     <p class="text-lg sm:text-xl text-brown-shake/80 mb-8 font-montserrat">
                         Создаем натуральные безалкогольные коктейли для тех, кто ценит чистоту состава и яркие вкусовые ощущения
                     </p>
-                    <button onclick="openOrderModal()" class="bg-orange-shake text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-red-shake transition btn-hover cursor-pointer">
-                        Попробовать сейчас
-                    </button>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="openOrderModal()" class="bg-orange-shake text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-red-shake transition btn-hover cursor-pointer">
+                            Попробовать сейчас
+                        </button>
+                        <button onclick="openOrderModal()" class="bg-brown-shake text-cream px-8 py-4 rounded-full text-lg font-bold hover:bg-teal-shake transition btn-hover cursor-pointer">
+                            Заказать доставку
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Right Content - 3D Cans -->
-                <div class="relative h-96 sm:h-[500px]">
-                    <div class="absolute top-0 left-1/4 can-3d float-animation" style="transform: rotate(-15deg);"></div>
-                    <div class="absolute top-20 right-1/4 can-3d float-animation-delayed" style="transform: rotate(10deg); width: 140px; height: 320px;"></div>
-                    <div class="absolute bottom-10 left-1/3 can-3d float-animation-delayed-2" style="transform: rotate(-5deg);"></div>
+                <!-- Right Content - 3D Spinning Can -->
+                <div class="relative h-96 sm:h-[500px] flex items-center justify-center">
+                    <div id="canContainer" style="display:flex;flex-direction:column;align-items:center;">
+                        <canvas id="c" width="300" height="420"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -349,8 +354,8 @@
             <h2 class="hero-title text-4xl sm:text-5xl lg:text-6xl text-brown-shake uppercase text-center mb-16">
                 ЧТО ГОВОРЯТ О НАС
             </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white rounded-2xl p-6 shadow-lg cursor-pointer card-hover" onclick="openOrderModal()">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-orange-shake rounded-full flex items-center justify-center text-white font-bold text-xl">А</div>
                         <div class="ml-4">
@@ -360,7 +365,7 @@
                     </div>
                     <p class="text-brown-shake/80">Наконец-то нашла идеальную альтернативу алкоголю! Вкус потрясающий, а главное - никакого похмелья 🎉</p>
                 </div>
-                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                <div class="bg-white rounded-2xl p-6 shadow-lg cursor-pointer card-hover" onclick="openOrderModal()">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-red-shake rounded-full flex items-center justify-center text-white font-bold text-xl">М</div>
                         <div class="ml-4">
@@ -370,7 +375,7 @@
                     </div>
                     <p class="text-brown-shake/80">Отличный выбор для тех, кто следит за здоровьем. Беру на все вечеринки!</p>
                 </div>
-                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                <div class="bg-white rounded-2xl p-6 shadow-lg cursor-pointer card-hover" onclick="openOrderModal()">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-teal-shake rounded-full flex items-center justify-center text-white font-bold text-xl">Е</div>
                         <div class="ml-4">
@@ -380,6 +385,11 @@
                     </div>
                     <p class="text-brown-shake/80">Использую в своих коктейлях. Гости в восторге! Натуральный состав - это важно.</p>
                 </div>
+            </div>
+            <div class="flex justify-center">
+                <button onclick="openOrderModal()" class="bg-brown-shake text-cream px-10 py-4 rounded-full text-lg font-bold hover:bg-orange-shake transition btn-hover cursor-pointer">
+                    Оставить свой отзыв
+                </button>
             </div>
         </div>
     </section>
@@ -395,24 +405,32 @@
                     <p class="text-lg text-brown-shake/80 mb-4">
                         Мы создаем безалкогольные коктейли нового поколения. Наша миссия - дать людям возможность наслаждаться вкусом без компромиссов для здоровья.
                     </p>
-                    <p class="text-lg text-brown-shake/80">
+                    <p class="text-lg text-brown-shake/80 mb-6">
                         100% натуральные ингредиенты, 0% алкоголя, 100% удовольствия.
                     </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="openOrderModal()" class="bg-orange-shake text-white px-6 py-3 rounded-full font-bold hover:bg-red-shake transition btn-hover cursor-pointer">
+                            Узнать больше
+                        </button>
+                        <button onclick="openOrderModal()" class="bg-teal-shake text-white px-6 py-3 rounded-full font-bold hover:bg-cyan-400 transition btn-hover cursor-pointer">
+                            Стать партнером
+                        </button>
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 gap-6">
-                    <div class="bg-orange-shake/10 rounded-2xl p-6 text-center">
+                    <div class="bg-orange-shake/10 rounded-2xl p-6 text-center cursor-pointer card-hover" onclick="openOrderModal()">
                         <p class="text-5xl font-rubik font-black text-orange-shake mb-2">100%</p>
                         <p class="text-brown-shake font-medium">Натуральный состав</p>
                     </div>
-                    <div class="bg-red-shake/10 rounded-2xl p-6 text-center">
+                    <div class="bg-red-shake/10 rounded-2xl p-6 text-center cursor-pointer card-hover" onclick="openOrderModal()">
                         <p class="text-5xl font-rubik font-black text-red-shake mb-2">0%</p>
                         <p class="text-brown-shake font-medium">Алкоголя</p>
                     </div>
-                    <div class="bg-teal-shake/10 rounded-2xl p-6 text-center">
+                    <div class="bg-teal-shake/10 rounded-2xl p-6 text-center cursor-pointer card-hover" onclick="openOrderModal()">
                         <p class="text-5xl font-rubik font-black text-teal-shake mb-2">50+</p>
                         <p class="text-brown-shake font-medium">Вкусов</p>
                     </div>
-                    <div class="bg-brown-shake/10 rounded-2xl p-6 text-center">
+                    <div class="bg-brown-shake/10 rounded-2xl p-6 text-center cursor-pointer card-hover" onclick="openOrderModal()">
                         <p class="text-5xl font-rubik font-black text-brown-shake mb-2">24/7</p>
                         <p class="text-brown-shake font-medium">Доставка</p>
                     </div>
@@ -428,7 +446,7 @@
                 ОСТАЛИСЬ ВОПРОСЫ?
             </h2>
             <p class="text-xl mb-8 opacity-90">Свяжитесь с нами любым удобным способом</p>
-            <div class="flex flex-wrap justify-center gap-4">
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
                 <a href="tel:+79999999999" class="bg-orange-shake px-8 py-4 rounded-full font-bold hover:bg-red-shake transition btn-hover">
                     📞 +7 (999) 999-99-99
                 </a>
@@ -437,6 +455,17 @@
                 </a>
                 <button onclick="openOrderModal()" class="bg-teal-shake px-8 py-4 rounded-full font-bold hover:bg-cyan-400 transition btn-hover cursor-pointer">
                     💬 Написать в Telegram
+                </button>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="openOrderModal()" class="bg-white/10 text-cream px-6 py-3 rounded-full font-medium hover:bg-white/20 transition btn-hover cursor-pointer">
+                    Скачать прайс-лист
+                </button>
+                <button onclick="openOrderModal()" class="bg-white/10 text-cream px-6 py-3 rounded-full font-medium hover:bg-white/20 transition btn-hover cursor-pointer">
+                    Оптовые закупки
+                </button>
+                <button onclick="openOrderModal()" class="bg-white/10 text-cream px-6 py-3 rounded-full font-medium hover:bg-white/20 transition btn-hover cursor-pointer">
+                    Франшиза
                 </button>
             </div>
         </div>
@@ -551,6 +580,106 @@
                 }
             });
         });
+
+        // 3D Can Animation
+        const canvas = document.getElementById('c');
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width, H = canvas.height;
+        const cx = W / 2, cy = H / 2;
+
+        const canH = 330;
+        const canR = 78;
+        const topY = cy - canH / 2;
+        const botY = cy + canH / 2;
+        const SEGS = 100;
+
+        const img = new Image();
+        img.onload = () => { ready = true; };
+        img.src = 'data:image/jpeg;base64,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';
+
+        let ready = false;
+        let angle = 0;
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+
+            const eRy = 20;
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.rect(cx - canR, topY, canR * 2, canH);
+            ctx.clip();
+
+            for (let i = 0; i < SEGS; i++) {
+                const theta = (i / SEGS) * Math.PI * 2 - angle;
+                const cosT = Math.cos(theta);
+                const shade = (cosT + 1) / 2;
+
+                const x = cx - canR + i * (canR * 2 / SEGS);
+                const sw = canR * 2 / SEGS + 0.5;
+
+                if (ready) {
+                    const srcX = (((i / SEGS) + angle / (Math.PI * 2)) % 1 + 1) % 1;
+                    const iw = img.naturalWidth;
+                    const ih = img.naturalHeight;
+                    ctx.drawImage(img, srcX * iw, 0, iw / SEGS, ih, x, topY, sw, canH);
+                    ctx.fillStyle = `rgba(0,0,0,${0.55 - shade * 0.55})`;
+                    ctx.fillRect(x, topY, sw, canH);
+                } else {
+                    const v = Math.round(80 + shade * 120);
+                    ctx.fillStyle = `rgb(${v},${Math.round(v*0.8)},${Math.round(v*1.1)})`;
+                    ctx.fillRect(x, topY, sw, canH);
+                }
+            }
+            ctx.restore();
+
+            const mkEllipse = (y, rx, ry, light) => {
+                const g = ctx.createLinearGradient(cx - rx, 0, cx + rx, 0);
+                g.addColorStop(0,   light ? '#7a8a9a' : '#5a6a7a');
+                g.addColorStop(0.4, light ? '#d8e8f4' : '#b0c8e0');
+                g.addColorStop(1,   light ? '#7a8a9a' : '#5a6a7a');
+                ctx.beginPath();
+                ctx.ellipse(cx, y, rx, ry, 0, 0, Math.PI * 2);
+                ctx.fillStyle = g;
+                ctx.fill();
+                ctx.strokeStyle = '#90a0b0';
+                ctx.lineWidth = 0.8;
+                ctx.stroke();
+            };
+
+            mkEllipse(topY, canR, eRy, true);
+            mkEllipse(botY, canR, eRy - 4, false);
+
+            const lidR = canR - 5;
+            mkEllipse(topY - 4, lidR, 13, true);
+
+            const cosA = Math.cos(-angle);
+            const tabX = cx + cosA * lidR * 0.25;
+            ctx.beginPath();
+            ctx.ellipse(tabX, topY - 6, 11, 5, 0, 0, Math.PI * 2);
+            ctx.strokeStyle = '#445566';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(tabX + 11, topY - 7);
+            ctx.lineTo(tabX + 22, topY - 14);
+            ctx.strokeStyle = '#556677';
+            ctx.lineWidth = 2.5;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+
+            const sg = ctx.createRadialGradient(cx, botY + 16, 6, cx, botY + 20, 72);
+            sg.addColorStop(0, 'rgba(0,0,0,0.25)');
+            sg.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.beginPath();
+            ctx.ellipse(cx, botY + 18, 72, 16, 0, 0, Math.PI * 2);
+            ctx.fillStyle = sg;
+            ctx.fill();
+
+            angle += 0.022;
+            requestAnimationFrame(draw);
+        }
+        draw();
     </script>
 </body>
 </html>
