@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coca-Cola - Taste The Feeling</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <h1>Coca-Cola</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#products">Продукты</a></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="word">Taste</span>
+                <span class="word">The</span>
+                <span class="word">Feeling</span>
+            </h1>
+            <p class="hero-subtitle">Освежающий вкус, который объединяет</p>
+            <button class="cta-button">Узнать больше</button>
+        </div>
+        <div class="hero-image">
+            <div class="can-container">
+                <div class="can"></div>
+                <div class="bubbles"></div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Прокрутите вниз</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <h2 class="section-title">Наши Продукты</h2>
+        <div class="products-grid">
+            <div class="product-card" data-color="#f40009">
+                <div class="product-image">
+                    <div class="product-can classic"></div>
+                </div>
+                <h3>Coca-Cola Classic</h3>
+                <p>Оригинальный вкус с 1886 года</p>
+                <button class="product-btn">Подробнее</button>
+            </div>
+            <div class="product-card" data-color="#000000">
+                <div class="product-image">
+                    <div class="product-can zero"></div>
+                </div>
+                <h3>Coca-Cola Zero</h3>
+                <p>Настоящий вкус без сахара</p>
+                <button class="product-btn">Подробнее</button>
+            </div>
+            <div class="product-card" data-color="#c0c0c0">
+                <div class="product-image">
+                    <div class="product-can light"></div>
+                </div>
+                <h3>Coca-Cola Light</h3>
+                <p>Легкий и освежающий</p>
+                <button class="product-btn">Подробнее</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="section-title">История Бренда</h2>
+                <p>С 1886 года Coca-Cola объединяет людей по всему миру. Наш уникальный вкус стал символом радости, дружбы и незабываемых моментов.</p>
+                <p>Мы продолжаем инновации, создавая новые вкусы и форматы, оставаясь верными нашему наследию.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="200">0</h3>
+                    <p>Стран присутствия</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="1886">0</h3>
+                    <p>Год основания</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number" data-target="500">0</h3>
+                    <p>Брендов в портфеле</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Свяжитесь с нами</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Сообщение" rows="5" required></textarea>
+            <button type="submit" class="submit-btn">Отправить</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Coca-Cola. Все права защищены.</p>
+        <div class="social-links">
+            <a href="#" class="social-icon">FB</a>
+            <a href="#" class="social-icon">IG</a>
+            <a href="#" class="social-icon">TW</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
