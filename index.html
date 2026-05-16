@@ -3,120 +3,554 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coca-Cola - Taste The Feeling</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+    <title>SHAKE Zero Alcohol - Чистый вкус без алкоголя</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F9F4EB',
+                        'orange-shake': '#FF6B35',
+                        'red-shake': '#E63946',
+                        'brown-shake': '#3D2817',
+                        'teal-shake': '#4ECDC4',
+                    },
+                    fontFamily: {
+                        'rubik': ['Rubik', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F9F4EB;
+        }
 
-    <nav class="navbar">
-        <div class="logo">
-            <h1>Coca-Cola</h1>
+        .hero-title {
+            font-family: 'Rubik', sans-serif;
+            font-weight: 900;
+            line-height: 0.9;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .float-animation-delayed {
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .float-animation-delayed-2 {
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        @keyframes blob {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .blob-animation {
+            animation: blob 15s ease-in-out infinite;
+        }
+
+        .can-3d {
+            width: 120px;
+            height: 280px;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            border-radius: 40px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .can-3d::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #FF6B35 0%, #E63946 100%);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .can-3d::after {
+            content: '🍹';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+        }
+
+        .modal-enter {
+            animation: modalEnter 0.3s ease-out;
+        }
+
+        @keyframes modalEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .notification {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .blob-bg {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+
+        .btn-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-mobile {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-mobile.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/40 border-b border-brown-shake/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-rubik font-black text-brown-shake">SHAKE</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-brown-shake hover:text-orange-shake transition font-medium">Главная</a>
+                    <a href="#catalog" class="text-brown-shake hover:text-orange-shake transition font-medium">Каталог</a>
+                    <a href="#reviews" class="text-brown-shake hover:text-orange-shake transition font-medium">Отзывы</a>
+                    <a href="#about" class="text-brown-shake hover:text-orange-shake transition font-medium">О нас</a>
+                    <a href="#contact" class="text-brown-shake hover:text-orange-shake transition font-medium">Контакты</a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-4">
+                    <button class="text-brown-shake hover:text-orange-shake transition" onclick="openOrderModal()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </button>
+                    <a href="tel:+79999999999" class="text-brown-shake hover:text-orange-shake transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                    </a>
+                    <button class="bg-brown-shake text-cream px-6 py-2 rounded-full font-medium hover:bg-orange-shake transition btn-hover">
+                        Личный кабинет
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-brown-shake" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="#home">Главная</a></li>
-            <li><a href="#products">Продукты</a></li>
-            <li><a href="#about">О нас</a></li>
-            <li><a href="#contact">Контакты</a></li>
-        </ul>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="word">Taste</span>
-                <span class="word">The</span>
-                <span class="word">Feeling</span>
-            </h1>
-            <p class="hero-subtitle">Освежающий вкус, который объединяет</p>
-            <button class="cta-button">Узнать больше</button>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="menu-mobile fixed top-0 right-0 h-full w-64 bg-cream shadow-2xl z-50 p-6">
+        <button onclick="toggleMobileMenu()" class="absolute top-4 right-4 text-brown-shake">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="flex flex-col space-y-4 mt-12">
+            <a href="#home" class="text-brown-shake hover:text-orange-shake transition font-medium" onclick="toggleMobileMenu()">Главная</a>
+            <a href="#catalog" class="text-brown-shake hover:text-orange-shake transition font-medium" onclick="toggleMobileMenu()">Каталог</a>
+            <a href="#reviews" class="text-brown-shake hover:text-orange-shake transition font-medium" onclick="toggleMobileMenu()">Отзывы</a>
+            <a href="#about" class="text-brown-shake hover:text-orange-shake transition font-medium" onclick="toggleMobileMenu()">О нас</a>
+            <a href="#contact" class="text-brown-shake hover:text-orange-shake transition font-medium" onclick="toggleMobileMenu()">Контакты</a>
+            <button class="bg-brown-shake text-cream px-6 py-2 rounded-full font-medium hover:bg-orange-shake transition">
+                Личный кабинет
+            </button>
         </div>
-        <div class="hero-image">
-            <div class="can-container">
-                <div class="can"></div>
-                <div class="bubbles"></div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Прокрутите вниз</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
+    </div>
 
-    <section id="products" class="products">
-        <h2 class="section-title">Наши Продукты</h2>
-        <div class="products-grid">
-            <div class="product-card" data-color="#f40009">
-                <div class="product-image">
-                    <div class="product-can classic"></div>
-                </div>
-                <h3>Coca-Cola Classic</h3>
-                <p>Оригинальный вкус с 1886 года</p>
-                <button class="product-btn">Подробнее</button>
-            </div>
-            <div class="product-card" data-color="#000000">
-                <div class="product-image">
-                    <div class="product-can zero"></div>
-                </div>
-                <h3>Coca-Cola Zero</h3>
-                <p>Настоящий вкус без сахара</p>
-                <button class="product-btn">Подробнее</button>
-            </div>
-            <div class="product-card" data-color="#c0c0c0">
-                <div class="product-image">
-                    <div class="product-can light"></div>
-                </div>
-                <h3>Coca-Cola Light</h3>
-                <p>Легкий и освежающий</p>
-                <button class="product-btn">Подробнее</button>
-            </div>
-        </div>
-    </section>
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden py-20">
+        <!-- Background Blobs -->
+        <div class="blob-bg w-96 h-96 bg-orange-shake top-20 -left-48 blob-animation"></div>
+        <div class="blob-bg w-80 h-80 bg-red-shake bottom-20 -right-40 blob-animation" style="animation-delay: 2s;"></div>
+        <div class="blob-bg w-64 h-64 bg-teal-shake top-1/2 right-1/4 blob-animation" style="animation-delay: 4s;"></div>
 
-    <section id="about" class="about">
-        <div class="about-content">
-            <div class="about-text">
-                <h2 class="section-title">История Бренда</h2>
-                <p>С 1886 года Coca-Cola объединяет людей по всему миру. Наш уникальный вкус стал символом радости, дружбы и незабываемых моментов.</p>
-                <p>Мы продолжаем инновации, создавая новые вкусы и форматы, оставаясь верными нашему наследию.</p>
-            </div>
-            <div class="about-stats">
-                <div class="stat-item">
-                    <h3 class="stat-number" data-target="200">0</h3>
-                    <p>Стран присутствия</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div>
+                    <h1 class="hero-title text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-brown-shake uppercase mb-6">
+                        ТАМ, ГДЕ РОЖДАЕТСЯ НОВЫЙ ВКУС
+                    </h1>
+                    <p class="text-lg sm:text-xl text-brown-shake/80 mb-8 font-montserrat">
+                        Создаем натуральные безалкогольные коктейли для тех, кто ценит чистоту состава и яркие вкусовые ощущения
+                    </p>
+                    <button onclick="openOrderModal()" class="bg-orange-shake text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-red-shake transition btn-hover cursor-pointer">
+                        Попробовать сейчас
+                    </button>
                 </div>
-                <div class="stat-item">
-                    <h3 class="stat-number" data-target="1886">0</h3>
-                    <p>Год основания</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="stat-number" data-target="500">0</h3>
-                    <p>Брендов в портфеле</p>
+
+                <!-- Right Content - 3D Cans -->
+                <div class="relative h-96 sm:h-[500px]">
+                    <div class="absolute top-0 left-1/4 can-3d float-animation" style="transform: rotate(-15deg);"></div>
+                    <div class="absolute top-20 right-1/4 can-3d float-animation-delayed" style="transform: rotate(10deg); width: 140px; height: 320px;"></div>
+                    <div class="absolute bottom-10 left-1/3 can-3d float-animation-delayed-2" style="transform: rotate(-5deg);"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <h2 class="section-title">Свяжитесь с нами</h2>
-        <form class="contact-form">
-            <input type="text" placeholder="Ваше имя" required>
-            <input type="email" placeholder="Email" required>
-            <textarea placeholder="Сообщение" rows="5" required></textarea>
-            <button type="submit" class="submit-btn">Отправить</button>
-        </form>
+    <!-- Catalog Section -->
+    <section id="catalog" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="hero-title text-4xl sm:text-5xl lg:text-6xl text-brown-shake uppercase text-center mb-16">
+                ЧТО ВЫБРАТЬ? ВСЁ!
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Card 1 - Orange -->
+                <div class="bg-gradient-to-br from-orange-shake to-red-shake rounded-3xl p-8 text-white card-hover cursor-pointer">
+                    <div class="flex justify-center mb-6">
+                        <div class="can-3d"></div>
+                    </div>
+                    <h3 class="text-3xl font-rubik font-bold mb-4">SHAKE Zero Alcohol</h3>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">✓</span>
+                            <span class="font-medium">0% Спирта</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">✓</span>
+                            <span class="font-medium">0 Калорий</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">✓</span>
+                            <span class="font-medium">Натуральный сок</span>
+                        </div>
+                    </div>
+                    <button onclick="openOrderModal()" class="w-full bg-white text-orange-shake py-3 rounded-full font-bold hover:bg-cream transition btn-hover">
+                        Выбрать
+                    </button>
+                </div>
+
+                <!-- Card 2 - Red -->
+                <div class="bg-gradient-to-br from-red-shake to-pink-500 rounded-3xl p-8 text-white card-hover cursor-pointer">
+                    <div class="flex justify-center mb-6">
+                        <div class="can-3d" style="background: linear-gradient(135deg, #FFE5E5 0%, #FFD0D0 100%);"></div>
+                    </div>
+                    <h3 class="text-3xl font-rubik font-bold mb-4">Rose Gin</h3>
+                    <p class="mb-6 text-white/90">
+                        Изысканный вкус розового джина без алкоголя. Идеально для особых моментов.
+                    </p>
+                    <button onclick="openOrderModal()" class="w-full bg-white text-red-shake py-3 rounded-full font-bold hover:bg-cream transition btn-hover">
+                        Хочу
+                    </button>
+                </div>
+
+                <!-- Card 3 - Teal (Merch) -->
+                <div class="bg-gradient-to-br from-teal-shake to-cyan-400 rounded-3xl p-8 text-white card-hover cursor-pointer">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center text-6xl">
+                            👕
+                        </div>
+                    </div>
+                    <h3 class="text-3xl font-rubik font-bold mb-4">МЕРЧ</h3>
+                    <p class="mb-6 text-white/90">
+                        Одежда, посуда и аксессуары от SHAKE. Стиль для тех, кто выбирает свободу.
+                    </p>
+                    <button onclick="openOrderModal()" class="w-full bg-white text-teal-shake py-3 rounded-full font-bold hover:bg-cream transition btn-hover">
+                        В каталог
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex justify-center">
+                <button onclick="openOrderModal()" class="bg-brown-shake text-cream px-12 py-4 rounded-full text-xl font-bold hover:bg-orange-shake transition btn-hover cursor-pointer">
+                    СМОТРЕТЬ ВЕСЬ КАТАЛОГ
+                </button>
+            </div>
+        </div>
     </section>
 
-    <footer class="footer">
-        <p>&copy; 2026 Coca-Cola. Все права защищены.</p>
-        <div class="social-links">
-            <a href="#" class="social-icon">FB</a>
-            <a href="#" class="social-icon">IG</a>
-            <a href="#" class="social-icon">TW</a>
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 bg-white/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="hero-title text-4xl sm:text-5xl lg:text-6xl text-brown-shake uppercase text-center mb-16">
+                ЧТО ГОВОРЯТ О НАС
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-shake rounded-full flex items-center justify-center text-white font-bold text-xl">А</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-brown-shake">Анна</p>
+                            <p class="text-sm text-brown-shake/60">@anna_lifestyle</p>
+                        </div>
+                    </div>
+                    <p class="text-brown-shake/80">Наконец-то нашла идеальную альтернативу алкоголю! Вкус потрясающий, а главное - никакого похмелья 🎉</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-shake rounded-full flex items-center justify-center text-white font-bold text-xl">М</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-brown-shake">Максим</p>
+                            <p class="text-sm text-brown-shake/60">@max_fitness</p>
+                        </div>
+                    </div>
+                    <p class="text-brown-shake/80">Отличный выбор для тех, кто следит за здоровьем. Беру на все вечеринки!</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-teal-shake rounded-full flex items-center justify-center text-white font-bold text-xl">Е</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-brown-shake">Елена</p>
+                            <p class="text-sm text-brown-shake/60">@elena_chef</p>
+                        </div>
+                    </div>
+                    <p class="text-brown-shake/80">Использую в своих коктейлях. Гости в восторге! Натуральный состав - это важно.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="hero-title text-4xl sm:text-5xl text-brown-shake uppercase mb-6">
+                        О БРЕНДЕ SHAKE
+                    </h2>
+                    <p class="text-lg text-brown-shake/80 mb-4">
+                        Мы создаем безалкогольные коктейли нового поколения. Наша миссия - дать людям возможность наслаждаться вкусом без компромиссов для здоровья.
+                    </p>
+                    <p class="text-lg text-brown-shake/80">
+                        100% натуральные ингредиенты, 0% алкоголя, 100% удовольствия.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-orange-shake/10 rounded-2xl p-6 text-center">
+                        <p class="text-5xl font-rubik font-black text-orange-shake mb-2">100%</p>
+                        <p class="text-brown-shake font-medium">Натуральный состав</p>
+                    </div>
+                    <div class="bg-red-shake/10 rounded-2xl p-6 text-center">
+                        <p class="text-5xl font-rubik font-black text-red-shake mb-2">0%</p>
+                        <p class="text-brown-shake font-medium">Алкоголя</p>
+                    </div>
+                    <div class="bg-teal-shake/10 rounded-2xl p-6 text-center">
+                        <p class="text-5xl font-rubik font-black text-teal-shake mb-2">50+</p>
+                        <p class="text-brown-shake font-medium">Вкусов</p>
+                    </div>
+                    <div class="bg-brown-shake/10 rounded-2xl p-6 text-center">
+                        <p class="text-5xl font-rubik font-black text-brown-shake mb-2">24/7</p>
+                        <p class="text-brown-shake font-medium">Доставка</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-brown-shake text-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="hero-title text-4xl sm:text-5xl lg:text-6xl uppercase mb-6">
+                ОСТАЛИСЬ ВОПРОСЫ?
+            </h2>
+            <p class="text-xl mb-8 opacity-90">Свяжитесь с нами любым удобным способом</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="tel:+79999999999" class="bg-orange-shake px-8 py-4 rounded-full font-bold hover:bg-red-shake transition btn-hover">
+                    📞 +7 (999) 999-99-99
+                </a>
+                <a href="mailto:info@shake.ru" class="bg-orange-shake px-8 py-4 rounded-full font-bold hover:bg-red-shake transition btn-hover">
+                    ✉️ info@shake.ru
+                </a>
+                <button onclick="openOrderModal()" class="bg-teal-shake px-8 py-4 rounded-full font-bold hover:bg-cyan-400 transition btn-hover cursor-pointer">
+                    💬 Написать в Telegram
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brown-shake/90 text-cream py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-lg font-rubik font-bold mb-2">SHAKE Zero Alcohol</p>
+            <p class="opacity-70">© 2026 Все права защищены</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Order Modal -->
+    <div id="orderModal" class="fixed inset-0 bg-cream z-50 hidden items-center justify-center p-4">
+        <div class="modal-enter max-w-md w-full bg-white rounded-3xl shadow-2xl p-8">
+            <h3 class="text-3xl font-rubik font-black text-brown-shake mb-4 text-center">
+                ⚡ Оформление заказа
+            </h3>
+            <p class="text-brown-shake/80 mb-6 text-center">
+                Напиши свой Telegram, и наш менеджер свяжется с тобой в течение 10 минут!
+            </p>
+            <input
+                type="text"
+                id="telegramInput"
+                placeholder="@username"
+                class="w-full px-4 py-3 border-2 border-brown-shake/20 rounded-xl mb-6 focus:outline-none focus:border-orange-shake transition"
+            >
+            <div class="space-y-3">
+                <button
+                    onclick="submitOrder()"
+                    class="w-full bg-orange-shake text-white py-3 rounded-full font-bold hover:bg-red-shake transition btn-hover cursor-pointer"
+                >
+                    Отправить заказ
+                </button>
+                <button
+                    onclick="closeOrderModal()"
+                    class="w-full bg-brown-shake/10 text-brown-shake py-3 rounded-full font-bold hover:bg-brown-shake/20 transition btn-hover cursor-pointer"
+                >
+                    Вернуться на сайт
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-8 py-4 rounded-full shadow-2xl hidden notification z-50">
+        <p class="font-bold">✓ Заказ принят! Скоро напишем.</p>
+    </div>
+
+    <script>
+        let scrollPosition = 0;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function openOrderModal() {
+            scrollPosition = window.pageYOffset;
+            document.getElementById('orderModal').classList.remove('hidden');
+            document.getElementById('orderModal').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').classList.add('hidden');
+            document.getElementById('orderModal').classList.remove('flex');
+            document.body.style.overflow = 'auto';
+            window.scrollTo(0, scrollPosition);
+        }
+
+        function submitOrder() {
+            const input = document.getElementById('telegramInput');
+            const value = input.value.trim();
+
+            if (value === '') {
+                input.classList.add('border-red-500');
+                input.placeholder = 'Пожалуйста, введите ваш Telegram';
+                return;
+            }
+
+            input.classList.remove('border-red-500');
+
+            const notification = document.getElementById('notification');
+            notification.classList.remove('hidden');
+
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, 3000);
+
+            input.value = '';
+            closeOrderModal();
+        }
+
+        document.getElementById('telegramInput').addEventListener('input', function() {
+            this.classList.remove('border-red-500');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    if (document.getElementById('mobileMenu').classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
